@@ -53,28 +53,15 @@ public class Main {
         parc.listerVehiculesDisponibles();
     }
     private static void retournerVehicule() {
-        System.out.println("Souhaitez vous retourner une voiture ou un camion?");
-        System.out.println("1.Voiture");
-        System.out.println("2.Camion");
-        int choix= clavier.nextInt();clavier.nextLine();
-        switch(choix) {
-            case 1:
-                System.out.println("Veuillez entrer l'immatricule de la voiture");
-                int imm = clavier.nextInt();clavier.nextLine();
-                Voiture voiture = new Voiture(imm);
-                voiture.retourner();
-                System.out.println("La voiture a été retourné.");
-                break;
-            case 2 :
-                System.out.println("Veuillez entrer l'immatricule du camion");
-                int immc = clavier.nextInt();clavier.nextLine();
-                Camion camion = new Camion(immc);
-                camion.retourner();
-                System.out.println("Le camion a été retourné");
-                break;
-            default:
-                System.out.println("Option invalide");
-                break;
+        System.out.println("Veuillez entrer l'immatriculation du véhicule à retourner :");
+        int imm = clavier.nextInt(); clavier.nextLine();
+        Vehicule vehicule = parc.rechercherVehicule(imm);
+
+        if (vehicule != null) {
+            vehicule.retourner();
+            System.out.println("Le véhicule a été retourné.");
+        } else {
+            System.out.println("Véhicule introuvable.");
         }
     }
     private static void louerVehicule() {
@@ -155,5 +142,6 @@ public class Main {
         }
         System.out.println("Liste de véhicule actuelle:");
         System.out.println(parc.listeVehicules);
+
     }
 }

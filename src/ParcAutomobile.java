@@ -5,6 +5,14 @@ public class ParcAutomobile {
         listeVehicules.add(vehicule);
         System.out.println("Le véhicule a bien été enregistré.\n Détail du vehicule: " + vehicule.toString());
     }
+    public Vehicule rechercherVehicule(int immatriculation) {
+        for (Vehicule vehicule : listeVehicules) {
+            if (vehicule.immatriculation == immatriculation) {
+                return vehicule;
+            }
+        }
+        return null;
+    }
     public void listerVehiculesDisponibles() {
         System.out.println("Liste des véhicules disponibles :");
         boolean existe = false;

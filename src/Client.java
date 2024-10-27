@@ -46,16 +46,16 @@ public class Client {
         System.out.println("1.voiture");
         System.out.println("2.camion");
         int choix=clavier.nextInt();clavier.nextLine();
+        System.out.println("Entrer l'immatricule du véhicule.");
+        int imm= clavier.nextInt();clavier.nextLine();
+        Vehicule vehicule = Main.parc.rechercherVehicule(imm);
         switch(choix){
             case 1:
-                System.out.println("Entrer l'immatricule de la voiture");
-                int imm= clavier.nextInt();clavier.nextLine();
-                Voiture voiture = new Voiture(imm);
-                if ("loué".equalsIgnoreCase(voiture.statut)) {
+                if ("loué".equalsIgnoreCase(vehicule.statut)) {
                         throw new VehiculeIndisponibleException("La voiture est déjà loué.");
                 } else {
-                    voiture.louer();
-                    listeLocation.add(voiture);
+                    vehicule.louer();
+                    listeLocation.add(vehicule);
                     System.out.println("La location a été effectué");
                 }
                 break;
@@ -69,15 +69,11 @@ public class Client {
                     case 1:
                         throw new ClientNonAutoriseException("Le client n'a pas le permis adequate,il ne peut pas louer un camion");
                     case 2:
-                        System.out.println("Entrer l'immatricule du camion");
-                        int immc = clavier.nextInt();
-                        clavier.nextLine();
-                        Camion camion = new Camion(immc);
-                        if ("loué".equalsIgnoreCase(camion.statut)) {
+                        if ("loué".equalsIgnoreCase(vehicule.statut)) {
                             throw new VehiculeIndisponibleException("Le camion est déjà loué.");
                         } else {
-                            camion.louer();
-                            listeLocation.add(camion);
+                            vehicule.louer();
+                            listeLocation.add(vehicule);
                             System.out.println("La location a été effectué");
                         }
                         break;
